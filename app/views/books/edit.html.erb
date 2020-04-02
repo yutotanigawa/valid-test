@@ -2,6 +2,16 @@
 <div class="col-md-6 col-md-offset-3">
 
 <h1>Editing Book</h1>
+				<% if @book.errors.any? %>
+				<div class = "alert alert-warning">
+						<h3><%= @book.errors.count %>errors prohibited this user from being saved:</h3>
+						<% @book.errors.full_messages.each do |message| %>
+					<ul>
+						<li><%= message %></li>
+						<% end %>
+					</ul>
+					<% end %>
+				</div>
 
 <%= render "books/newform", book: @book %>
 <%= link_to "Show", @book, class: "book_#{@book.id}" %>

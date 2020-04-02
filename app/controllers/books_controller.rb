@@ -6,16 +6,20 @@ class BooksController < ApplicationController
 
   def show
   	@book = Book.find(params[:id])
+    @user = current_user
   end
 
   def index
     @book = Book.new
-  	@books = Book.all #一覧表示するためにBookモデルの情報を全てくださいのall
+    @books = Book.all #一覧表示するためにBookモデルの情報を全てくださいのall
+    @user = current_user
+    @users = User.all
   end
 
   def create
     @books = Book.all
   	@book = Book.new(book_params) #Bookモデルのテーブルを使用しているのでbookコントローラで保存する。
+    @book.user_id = current_user.id
     @user = current_user
     @users = User.all
   	if @book.save #入力されたデータをdbに保存する。
