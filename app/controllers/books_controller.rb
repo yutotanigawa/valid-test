@@ -7,6 +7,7 @@ class BooksController < ApplicationController
   def show
   	@book = Book.find(params[:id])
     @user = current_user
+    @book_comment = BookComment.new
   end
 
   def index
@@ -34,8 +35,6 @@ class BooksController < ApplicationController
   	@book = Book.find(params[:id])
   end
 
-
-
   def update
   	@book = Book.find(params[:id])
   	if @book.update(book_params)
@@ -44,6 +43,7 @@ class BooksController < ApplicationController
   		render "edit"
   	end
   end
+
 
   def delete
   	@book = Book.find(params[:id])
