@@ -1,3 +1,5 @@
+
+
 <table class="table">
 	<tr><%= attachment_image_tag(@user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg") %></tr>
 	<tr>
@@ -11,11 +13,11 @@
 	</tr>
 	<tr>
 		<th>follows</th>
-		<th><%= @user.followings.count %></th>
+		<th><%= link_to following_user_path(@user) do %><%= @user.followings.count %><% end %></th>
 	</tr>
 	<tr>
 		<th>followers</th>
-		<th><%= @user.followers.count %></th>
+		<th><%= link_to followers_user_path(@user) do %><%= @user.followers.count %><% end %></th>
 	</tr>
 </table>
 		<% unless current_user == @user %>

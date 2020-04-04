@@ -66,7 +66,7 @@
 						<%= attachment_image_tag(book_comment.user, :profile_image, :fill, 50, 50, fallback: "no-image-mini.jpg") %>
 						<% end %>
 					</td>
-					<td><a href="#" class="link-author"><%= book_comment.user.name %></a></td>
+					<td><%= link_to user_path(book_comment.user) do %><%= book_comment.user.name %><% end %></a></td>
 					<td><%= book_comment.created_at.strftime('%Y/%m/%d') %></td>
 					<td><%= book_comment.comment %></td>
 						<% if book_comment.user == current_user %>
