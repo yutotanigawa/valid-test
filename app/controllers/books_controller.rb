@@ -52,6 +52,7 @@ class BooksController < ApplicationController
   	redirect_to books_path, notice: "successfully delete book!"
   end
 
+
   private
 
   def book_params
