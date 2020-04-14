@@ -14,6 +14,24 @@ class User < ApplicationRecord
   has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follow_id'
   has_many :followers, through: :reverse_of_relationships, source: :user
 
+  # enumで論理削除機能
+
+  enum valid_status: { active: 0, is_deleted: 1 }
+
+  def withdraw!
+    if active?
+      is_deleted!
+    else
+      active!
+    end
+  end
+
+  def active_for_authentication?
+     super && self.valid_status == "active"
+  end
+
+
+
   def follow(other_user)
     unless self == other_user
       self.relationships.find_or_create_by(follow_id: other_user.id)

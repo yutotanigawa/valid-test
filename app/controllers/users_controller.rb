@@ -44,6 +44,13 @@ class UsersController < ApplicationController
     render 'show_follower'
   end
 
+  def withdraw
+    @user = User.find(params[:user_id])
+    @user.withdraw!
+    reset_session
+    redirect_to root_path, notice:'退会が完了しました'
+   end
+
 
   private
   def user_params
